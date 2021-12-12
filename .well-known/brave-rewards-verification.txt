@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: jhabboo.github.io
+Token: 9ecbafa1d1ccb9c2e74cc2cca9f1d5925710c916fabb2f21300c38962d9d22bd
