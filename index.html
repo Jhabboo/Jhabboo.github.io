@@ -68,7 +68,7 @@
        </li>
 
 	<li>
-        <a id="shareButton><span class="title">Share App</span></a>      <!--Download App -->
+       <a id="shareButton"><span class="title">Share App</span></a>  <!--Share App -->
        </li>
         
           
@@ -100,15 +100,15 @@
         // Use the Web Share API (supported by modern browsers)
         navigator.share({
           title: 'Share This Link',
-          text: 'Check out this link: https://example.com',
-          url: 'https://example.com',
+          text: 'Check out this link: https://drive.google.com/file/d/1lZRMZ5FQWkAE6z7bBBfxUdYjUTjtoL90/view?usp=sharing',
+          url: 'https://drive.google.com/file/d/1lZRMZ5FQWkAE6z7bBBfxUdYjUTjtoL90/view?usp=sharing',
         })
         .then(() => console.log('Shared successfully'))
         .catch(error => console.error('Sharing failed:', error));
       } else {
         // Fallback for browsers that do not support the Web Share API
         // You can provide links to open in other apps (e.g., WhatsApp, Telegram, and Gmail)
-        const shareUrl = 'https://example.com';
+        const shareUrl = 'https://drive.google.com/file/d/1lZRMZ5FQWkAE6z7bBBfxUdYjUTjtoL90/view?usp=sharing';
         const whatsappUrl = 'whatsapp://send?text=' + encodeURIComponent('Check out this link: ' + shareUrl);
         const telegramUrl = 'tg://msg_url?url=' + encodeURIComponent(shareUrl) + '&text=Check out this link';
         const gmailUrl = 'mailto:?subject=Check out this link&body=' + encodeURIComponent('Check out this link: ' + shareUrl);
