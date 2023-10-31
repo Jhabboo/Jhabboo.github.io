@@ -68,7 +68,7 @@
        </li>
 
 	<li>
-        <a href="https://drive.google.com/file/d/1lZRMZ5FQWkAE6z7bBBfxUdYjUTjtoL90/view?usp=sharing"><span class="title">Download App</span></a>      <!--Download App -->
+        <a id="shareButton><span class="title">Share App</span></a>      <!--Download App -->
        </li>
         
           
@@ -94,5 +94,50 @@
 
     </ol>
   </center>
+<script>
+    document.getElementById('shareButton').addEventListener('click', function() {
+      if (navigator.share) {
+        // Use the Web Share API (supported by modern browsers)
+        navigator.share({
+          title: 'Share This Link',
+          text: 'Check out this link: https://example.com',
+          url: 'https://example.com',
+        })
+        .then(() => console.log('Shared successfully'))
+        .catch(error => console.error('Sharing failed:', error));
+      } else {
+        // Fallback for browsers that do not support the Web Share API
+        // You can provide links to open in other apps (e.g., WhatsApp, Telegram, and Gmail)
+        const shareUrl = 'https://example.com';
+        const whatsappUrl = 'whatsapp://send?text=' + encodeURIComponent('Check out this link: ' + shareUrl);
+        const telegramUrl = 'tg://msg_url?url=' + encodeURIComponent(shareUrl) + '&text=Check out this link';
+        const gmailUrl = 'mailto:?subject=Check out this link&body=' + encodeURIComponent('Check out this link: ' + shareUrl);
+        
+        // Create a list of app-sharing links
+        const appLinks = [whatsappUrl, telegramUrl, gmailUrl];
+        
+        // Open a share menu or allow the user to choose an app
+        if (navigator.canShare && navigator.canShare({ files: [] })) {
+          navigator.canShare({ title: 'Share This Link', text: 'Check out this link: ' + shareUrl, url: shareUrl })
+          .then(() => {
+            navigator.share({
+              title: 'Share This Link',
+              text: 'Check out this link: ' + shareUrl,
+              url: shareUrl,
+            })
+            .then(() => console.log('Shared successfully'))
+            .catch(error => console.error('Sharing failed:', error));
+          })
+          .catch(() => {
+            // Share menu not available, open individual app-sharing links
+            appLinks.forEach(link => window.open(link));
+          });
+        } else {
+          // Share menu not available, open individual app-sharing links
+          appLinks.forEach(link => window.open(link));
+        }
+      }
+    });
+  </script>
 </body>
 </html>
